@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tags para SEO -->
+  <meta name="description" content="Clasificador de imágenes de perros y gatos usando Inteligencia Artificial">
+  <meta name="keywords" content="IA, clasificación de imágenes, perros, gatos, machine learning">
+
+  <title>Clasificador Live Perro vs Gato</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1>🐶 Clasificador Perro vs Gato 🐱</h1>
+            <p>Clasificación en tiempo real de imágenes</p>
+        </div>
+
+        <!-- Estado del modelo -->
+        <div class="model-status loading" id="modelStatus">
+          <div class="status-dot loading"></div>
+          <span id="statusText">Cargando modelo...</span>
+        </div>
+
+        <div class="content">
+            <!-- Sección de cámara en vivo -->
+            <div class="camera-section" id="cameraSection">
+                <div class="camera-prompt" id="cameraPrompt">
+                    <div class="camera-icon">📸</div>
+                    <div class="camera-text">Haz clic para activar la cámara</div>
+                </div>
+                <div class="video-wrapper" id="videoWrapper">
+                    <video id="video" autoplay playsinline width="480" height="360" 
+                        style="border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.2);background:#222;"></video>
+                </div>
+            </div>
+
+            <!-- Sección de predicción -->
+            <div class="prediction-section" id="predictionSection">
+                <!-- Oculta la previsualización de imagen -->
+                <div class="image-container" style="display:none;">
+                  <img id="imagePreview" class="image-preview" alt="Imagen a clasificar">
+                </div>
+
+                <!-- Resultados -->
+                <div class="results-container" id="resultsContainer">
+                  <div class="results-title">Resultados</div>
+                  <div class="prediction-grid">
+                    <div class="prediction-item" id="dogResult">
+                      <span class="animal-icon">🐶</span>
+                      <div class="animal-name">Perro</div>
+                      <div class="probability" id="dogPercentage">0%</div>
+                    </div>
+                    <div class="prediction-item" id="catResult">
+                      <span class="animal-icon">🐱</span>
+                      <div class="animal-name">Gato</div>
+                      <div class="probability" id="catPercentage">0%</div>
+                    </div>
+                  </div>
+                  <div class="confidence-note" id="confidenceNote"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aviso de privacidad -->
+        <div class="privacy-note" aria-live="polite">
+          La imagen de la cámara se procesa localmente en tu dispositivo. No se envía a ningún servidor.
+        </div>
+
+        <!-- Sección de créditos del autor -->
+        <div class="author-section">
+          <div class="author-content">
+            <div class="author-title">Desarrollado por</div>
+            <div class="author-name">👨‍💻 Raúl Alvarado García</div>
+            <div class="tech-stack">
+              Tecnologías usadas: TensorFlow, TensorFlow.js, HTML5, CSS y JavaScript
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Canvas oculto para procesamiento -->
+    <canvas id="workCanvas" style="display: none;"></canvas>
+
+    <script src="main.js"></script>
+</body>
+</html>
