@@ -1,4 +1,4 @@
-# 🐶 Clasificador de Perros y Gatos 🐱
+# 🐶 Clasificador de Perros y Gatos (LIVE) 🐱
 
 Aplicación web que clasifica entre perros y gatos usando la cámara del dispositivo en tiempo real. El modelo se ejecuta en el navegador con **TensorFlow.js** y el procesamiento es 100% local.
 
