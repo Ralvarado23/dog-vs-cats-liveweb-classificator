@@ -34,4 +34,4 @@ Nota de privacidad: el vídeo se procesa localmente en tu navegador, no se enví
 
 ## 🚀 Demo
 
-[Prueba la demo en vivo](https://ralvarado23.github.io/dog-vs-cats-web-classificator/)
+[Prueba la demo en vivo](https://ralvarado23.github.io/dog-vs-cats-liveweb-classificator/)
