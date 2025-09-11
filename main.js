@@ -68,7 +68,12 @@ async function preprocessImageFromVideo() {
   elements.workCanvas.width = width;
   elements.workCanvas.height = height;
   const ctx = elements.workCanvas.getContext('2d');
-  ctx.drawImage(elements.video, 0, 0, width, height);
+  const vw = elements.video.videoWidth || elements.video.clientWidth;
+  const vh = elements.video.videoHeight || elements.video.clientHeight;
+  const side = Math.min(vw, vh);
+  const sx = Math.floor((vw - side) / 2);
+  const sy = Math.floor((vh - side) / 2);
+  ctx.drawImage(elements.video, sx, sy, side, side, 0, 0, width, height);
   return tf.tidy(() => {
     const tensor = tf.browser.fromPixels(elements.workCanvas);
     return tensor.toFloat().expandDims(0);
@@ -156,12 +161,7 @@ async function startCamera() {
     document.querySelector('.content').classList.add('live');
     elements.resultsContainer.classList.add('show');
 
-    elements.video.addEventListener('loadedmetadata', () => {
-      const aspectRatio = elements.video.videoWidth / elements.video.videoHeight;
-      let width = Math.min(480, window.innerWidth - 40);
-      elements.video.width = width;
-      elements.video.height = width / aspectRatio;
-    }, { once: true });
+    // Ajuste manual del tamaño eliminado; CSS (aspect-ratio + object-fit) controla el layout
 
     // Iniciar rAF
     cancelAnimationFrame(rafId);
